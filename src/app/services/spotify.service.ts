@@ -13,6 +13,7 @@ import 'rxjs/add/operator/map';
 export class SpotifyService{
     
     artists:any[] = [];
+    artist:any;
     urlBusqueda:string = "https://api.spotify.com/v1/search";
     urlArtist:string = "https://api.spotify.com/v1/artists";
 
@@ -24,7 +25,7 @@ export class SpotifyService{
         //El header es para poder enviar el permiso
         let headers = new Headers();
         //Creamos la autorización 
-        headers.append('authorization', 'Bearer BQDadp-icjJkavZVlHsB2VpzsCoVey5K5SpceJYMfgsdhgok8IIWTN5GzF_VEBd7ot5c0FnakXF9zgNiDWrtvQ');
+        headers.append('authorization', 'Bearer BQBnd1BZJ8JX44TopOdLKsy9ux9F2-QsoEd72rKrBmcE5V04ZDw1cVBMNpuPRjuV246FyGhO4sUFe1wyQPK5mQ');
         
         //Acá preparamos la consulta que traemos de la página de spotify con el termino el criterio de la busqueda
         let query = `?q=${termino}&type=artist`;
@@ -44,6 +45,34 @@ export class SpotifyService{
 
     }
 
+
+    getArtist( termino:string ){
+        let query = `/${termino}`;
+        let url = this.urlArtist + query;
+        //El header es para poder enviar el permiso
+        let headers = new Headers();
+        //Creamos la autorización 
+        headers.append('authorization', 'Bearer BQAwtXk2VE0wUh0Owu1mMC3vqy_I3k_3pI2ZAS91odFmfwCayufCEG1cb92LNcqt6MhhIFK-C0dThWzHSI5kCg');
+        
+        return this._http.get( url, { headers } ).map( res => {
+            console.log(res.json());
+            return res.json();
+        });
+    }
+
+    getTop( termino:string ){
+        //El header es para poder enviar el permiso
+        let headers = new Headers();
+        //Creamos la autorización 
+        headers.append('authorization', 'Bearer BQBnd1BZJ8JX44TopOdLKsy9ux9F2-QsoEd72rKrBmcE5V04ZDw1cVBMNpuPRjuV246FyGhO4sUFe1wyQPK5mQ');
+        
+        let query = `/${termino}/top-tracks?country=US`
+        let url = this.urlArtist + query;
+         return this._http.get(url, {headers}).map( res => {
+            console.log(res.json().tracks);
+            return res.json().tracks;
+        });
+    }
 
 }
 

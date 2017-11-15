@@ -1,0 +1,64 @@
+<div *ngIf="artist"  class="container margin-30 animated fadeIn fast">
+
+    <div class="row">
+        <div class="col-md-3 text-center">
+            <img [src]="artist.images | sinfoto" class="img-thumbnail img-circle" alt="">
+            <br>
+        </div>
+        <div class="col-md-9">
+            <h3>{{artist.name}}<small> Popularidad </small></h3>
+            <hr>
+            <a [href]="artist.external_urls?.spotify" class="btn btn-outline-success">
+                Ver página
+            </a>
+            <a [routerLink]="['/search']" class="btn btn-outline-danger">
+                Regresar
+            </a>
+        </div>
+    </div>
+
+
+    <div *ngIf="songs" class="container">
+        <h3>Top de {{artist.name}} </h3>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-black table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Foto</th>
+                                <th>Canción</th>
+                                <th>Popularidad</th>
+                                <th>Preview</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let song of songs; let i = index ">
+                                <td> {{ i + 1 }} </td>
+                                <td> <img [src]="song.album?.images | sinfoto" width="50" height="50" alt=""> </td>
+                                <td> {{ song.name }} </td>
+                                <td> {{ song.popularity }} </td>
+                                <td> <!--
+                                    <audio controls>
+                                        <source [src]="song.preview_url">
+                                        Tu navegador es muy viejo!
+                                    </audio>
+                                -->    
+                                <iframe [src]="song.uri | domseguro:'https://embed.spotify.com/?uri='" width="300" height="80" frameborder="0" allowtransparency="true">
+                                </iframe>
+                                </td>
+                            </tr>
+                        </tbody>
+                            
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+    
+    </div>
+
+</div>
+

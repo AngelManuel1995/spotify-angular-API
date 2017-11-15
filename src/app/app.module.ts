@@ -8,8 +8,9 @@ import { HomeComponent }   from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { SpotifyService }  from './services/spotify.service';
+import { ArtistComponent } from './components/artist/artist.component';
 import { SinfotoPipe }     from './pipes/sinfoto.pipe';
-
+import { DomseguroPipe }   from './pipes/domseguro.pipe';
 import {APP_ROUTING}       from './app.routes';
 
 @NgModule({
@@ -18,7 +19,9 @@ import {APP_ROUTING}       from './app.routes';
     HomeComponent,
     SearchComponent,
     NavbarComponent,
-    SinfotoPipe
+    ArtistComponent,
+    SinfotoPipe,
+    DomseguroPipe
   ],
   imports: [
     BrowserModule,
