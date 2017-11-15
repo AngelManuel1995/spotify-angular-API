@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Http, Headers }       from "@angular/http";
 //Importamos el módulo http para poder hacer las peticiones
+//Importamos el módulo del header para poder mandar las autorización del token
+//que requiere el spotify para que la API pueda devolver el resultado de la peteción
 import 'rxjs/add/operator/map';
 //Para poder mapear una http response a un objeto
 
@@ -19,17 +21,26 @@ export class SpotifyService{
     }
 
     getArtists( termino ){
+        //El header es para poder enviar el permiso
         let headers = new Headers();
-        headers.append('authorization', 'Bearer BQDOLWIIiVAUEJtFGpTaNkJHNwrh6EZbTWIkxC_HyyvytS4_y4cbkzse4dKpa4Wi5_Dazvidd31TqkGOthc-xQ');
-       
-        let query = `?q=${termino}&type=artist`;
-        let url = this.urlBusqueda + query;
+        //Creamos la autorización 
+        headers.append('authorization', 'Bearer BQDadp-icjJkavZVlHsB2VpzsCoVey5K5SpceJYMfgsdhgok8IIWTN5GzF_VEBd7ot5c0FnakXF9zgNiDWrtvQ');
         
-        return this._http.get( url, {headers} )
+        //Acá preparamos la consulta que traemos de la página de spotify con el termino el criterio de la busqueda
+        let query = `?q=${termino}&type=artist`;
+        //Y completamos en la url completa donde haremos la petición.
+        let url = this.urlBusqueda + query;
+        //Usamos el módulo http y su metodo get para hacer la peticion pero con el headers
+        //para poder tener los permisos y usamos el método map para crear el objeto
+        /*return this._http.get( url, { headers } )
                 .map( res => {
                      this.artists = res.json().artists.items;
-            //return res.json().artists.items;
-                 });
+                    //return res.json().artists.items;
+                });*/
+
+        return this._http.get(url , { headers } ).map( res => {
+            this.artists = res.json().artists.items
+        });
 
     }
 

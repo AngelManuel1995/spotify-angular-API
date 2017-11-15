@@ -5,11 +5,11 @@
             <input [(ngModel)]="termino" (keyup)="buscarArtista()" type="text" name="termino" class="form-control" placeholder="Buscar por artista">
         </div>
         <div class="col-md-9">
-            <ul>
-                <li *ngFor="let artist of _spotifyService.artists">
-                   {{ artist.name }} 
-                </li>
-            </ul>
+            <div class="row">
+                <div class="col-md-3" *ngFor="let artist of _spotifyService.artists">
+                    <img [src]="artist.images[1]?.url" class="img-fluid img-thumbnail">
+                </div>
+            </div>               
         </div>
     </div>
 </div>
