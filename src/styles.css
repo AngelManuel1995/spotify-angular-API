@@ -77,3 +77,29 @@ hr{
 .margin-30{
   margin-top: 30px;
 }
+.margin-bottom{
+  margin-bottom: 30px;
+}
+
+.change-color{
+  font-weight: bold;
+}
+
+.change-color>img:hover{
+  transition:0.5s;
+  width:120px; 
+  height:120px;
+}
+.change-color>img:not(:hover){
+  transition:1s;
+  width:100px; 
+  height:100px;
+}
+.change-color:hover{
+  transition:1s;
+  color: #00EB60;
+}
+.change-color:not(:hover){
+  color: white;  
+  transition:0.5s;
+}
