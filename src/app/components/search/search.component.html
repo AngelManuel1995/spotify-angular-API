@@ -6,8 +6,9 @@
         </div>
         <div class="col-md-9">
             <div class="row">
-                <div class="col-md-3" *ngFor="let artist of _spotifyService.artists">
-                    <img [src]="artist.images[1]?.url" class="img-fluid img-thumbnail">
+                <div class="col-md-3 text-center" *ngFor="let artist of _spotifyService.artists">
+                    <img [src]="artist.images | sinfoto" class="img-fluid img-thumbnail">
+                    <p>{{ artist.name }}</p>
                 </div>
             </div>               
         </div>

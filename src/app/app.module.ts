@@ -8,6 +8,7 @@ import { HomeComponent }   from './components/home/home.component';
 import { SearchComponent } from './components/search/search.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { SpotifyService }  from './services/spotify.service';
+import { SinfotoPipe }     from './pipes/sinfoto.pipe';
 
 import {APP_ROUTING}       from './app.routes';
 
@@ -16,7 +17,8 @@ import {APP_ROUTING}       from './app.routes';
     AppComponent,
     HomeComponent,
     SearchComponent,
-    NavbarComponent
+    NavbarComponent,
+    SinfotoPipe
   ],
   imports: [
     BrowserModule,
